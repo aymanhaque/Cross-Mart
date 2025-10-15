@@ -40,13 +40,6 @@ OuterBuddy offers a unique solution:
 - Bob sees the request, buys the gadget in Japan, and brings it to France.
 - Upon arrival, Bob meets Alice and sells her the gadget at a fair price, avoiding hefty import fees.
 
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-## Contact
-
-For questions or suggestions, please open an issue or contact the project owner.
 
 ## Tech Stack
 
