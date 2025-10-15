@@ -1,10 +1,14 @@
-import { Button } from "@/components/ui/button"
+import { router } from "./constants/router/router"
+import { RouterProvider } from "react-router-dom"
+import { ThemeProvider } from "./contexts/ThemeContext"
 
 function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
-    </div>
+    <ThemeProvider>
+      <div className="">
+        <RouterProvider router={router} />
+      </div>
+    </ThemeProvider>
   )
 }
 
