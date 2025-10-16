@@ -1,11 +1,10 @@
 package com.muhdhaque.backend.controller;
 
 import com.muhdhaque.backend.dto.PostcardDTO;
+import com.muhdhaque.backend.mapper.PostcardMapper;
+import com.muhdhaque.backend.model.PostCard;
 import com.muhdhaque.backend.service.postcardService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,14 +13,24 @@ import java.util.List;
 public class postcardController {
 
     private final postcardService postcardService;
+    private final PostcardMapper postcardMapper;
 
-    public postcardController(postcardService postcardService) {
+    public postcardController(postcardService postcardService, PostcardMapper postcardMapper) {
         this.postcardService = postcardService;
+        this.postcardMapper = postcardMapper;
     }
 
     @GetMapping("/getPostcards/{userID}")
     public List<PostcardDTO> getPostcardsByUserId(@PathVariable int userID) {
         // Logic to get postcards by user ID
         return postcardService.getPostcardsByUserId(userID);
+    }
+
+    @PostMapping("/createPostcard")
+    public PostcardDTO createPostcard(@RequestBody PostcardDTO postcardDTO, @RequestParam int userID) {
+
+        PostCard postcard = postcardService.createPostcard(postcardDTO, userID);
+
+        return postcardMapper.toDto(postcard); // Replace with actual creation logic
     }
 }
