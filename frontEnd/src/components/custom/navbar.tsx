@@ -18,6 +18,7 @@ const Navbar = () => {
                         <img className="w-12 dark:invert" src={outerImg} alt="OuterBuddy" />
                     </a>
                 </div>
+
                 {/* Search Bar */}
                 <div className='flex-1 max-w-md mx-8'>
                     <input 

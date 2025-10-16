@@ -7,6 +7,8 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import { loginUser } from "@/services/auth"
 import { useNavigate } from "react-router-dom"
+import { useAppDispatch } from "@/store/hooks"
+import { setCredentials } from "@/store/slices/authSlice"
 
 export function LoginForm({
   className,
@@ -19,6 +21,7 @@ export function LoginForm({
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
@@ -31,7 +34,15 @@ export function LoginForm({
     setError("")
 
     try {
-      await loginUser(formData)
+      const response = await loginUser(formData)
+      dispatch(setCredentials({
+        user: {
+          id: response.id,
+          email: response.email,
+          name: response.name
+        },
+        token: response.token
+      }))
       navigate("/Home")
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login failed")
