@@ -23,6 +23,7 @@ const FlyingTo = () => {
   const handleFlyingClick = () => {
     if (!expanded) {
       setExpanded(true)
+      setLocation("")
     }
   }
 

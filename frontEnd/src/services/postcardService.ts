@@ -8,8 +8,9 @@ interface PostcardData {
     location: string
     requestingFromCountry: string
     text: string
-    imageUrl?: string
+    imageURL: string // Changed to match backend naming
     commentCount: number
+    userId?: string // Add userId as an optional property
 }
 
 interface PostCardResponse {
@@ -19,13 +20,14 @@ interface PostCardResponse {
     location: string
     requestingFromCountry: string
     text: string
-    imageUrl?: string
+    imageURL: string // Changed to match backend naming
     commentCount: number
 }
 
 
 export const createPostcard = async(data: PostcardData): Promise<PostCardResponse> =>{
     try{
+        // Field names are now consistent with backend
         const response = await axios.post(`${API_BASE_URL}/postcard/createPostcard`, data)
         return response.data
     }

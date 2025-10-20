@@ -9,6 +9,7 @@ public class PostcardDTO {
     private String text;
     private String imageURL;
     private int commentCount;
+    private String userId; // Added userId field
 
     public PostcardDTO(int id, String userName, String userInitial, String location, String requestingFromCountry, String text, String imageURL, int commentCount) {
         this.id = id;
@@ -84,8 +85,14 @@ public class PostcardDTO {
     public void setCommentCount(int commentCount) {
         this.commentCount = commentCount;
     }
-//    private int userId;
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
 
 }

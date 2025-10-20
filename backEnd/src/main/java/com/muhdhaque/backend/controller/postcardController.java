@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/postcard")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class postcardController {
 
     private final postcardService postcardService;
@@ -39,10 +40,23 @@ public class postcardController {
     }
 
     @PostMapping("/createPostcard")
-    public PostcardDTO createPostcard(@RequestBody PostcardDTO postcardDTO, @RequestParam int userID) {
+    public PostcardDTO createPostcard(@RequestBody PostcardDTO postcardDTO) {
+        // Get userId from the PostcardDTO
+        String userId = postcardDTO.getUserId();
+        if (userId == null || userId.isEmpty()) {
+            throw new IllegalArgumentException("User ID is required");
+        }
+        
+        // Convert userId string to integer
+        int userIdInt;
+        try {
+            userIdInt = Integer.parseInt(userId);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid user ID format");
+        }
 
-        PostCard postcard = postcardService.createPostcard(postcardDTO, userID);
+        PostCard postcard = postcardService.createPostcard(postcardDTO, userIdInt);
 
-        return postcardMapper.toDto(postcard); // Replace with actual creation logic
+        return postcardMapper.toDto(postcard);
     }
 }

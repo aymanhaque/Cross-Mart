@@ -2,11 +2,14 @@ import { FaPlus, FaComments, FaMapMarkerAlt, FaBars } from "react-icons/fa";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import outerImg from "@/assets/outer1.png";
+import { useState } from "react";
+import PostcardSubmission from "./postcardSubmission";
 const size = 40
 
 
 const Navbar = () => {
     const { theme, toggleTheme } = useTheme();
+    const [showPostcardSubmission, setShowPostcardSubmission] = useState(false);
     
     return (
         <nav className='fixed z-50 top-0 left-0 w-full p-1 bg-white dark:bg-zinc-950 opacity-90 border-b-1 backdrop border-gray-300 dark:border-gray-600'>
@@ -37,7 +40,10 @@ const Navbar = () => {
                     >
                         {theme === 'dark' ? <Sun className="p-2" size={size} /> : <Moon className="p-2" size={size} />}
                     </button>
-                    <div className="flex items-center text-neutral-800 dark:text-neutral-300 hover:text-indigo-400 dark:hover:text-indigo-400 transition-all duration-300 cursor-pointer">
+                    <div 
+                        className="flex items-center text-neutral-800 dark:text-neutral-300 hover:text-indigo-400 dark:hover:text-indigo-400 transition-all duration-300 cursor-pointer"
+                        onClick={() => setShowPostcardSubmission(true)}
+                    >
                         <span>Post</span>
                         <FaPlus className="p-2" size={size} />
                     </div>
@@ -56,6 +62,12 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
+            
+            {/* Postcard Submission Modal */}
+            <PostcardSubmission 
+                isOpen={showPostcardSubmission} 
+                onClose={() => setShowPostcardSubmission(false)} 
+            />
         </nav>
     );
 };
