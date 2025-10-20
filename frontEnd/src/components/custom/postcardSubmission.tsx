@@ -80,9 +80,9 @@ const PostcardSubmission = ({ isOpen, onClose }: PostcardSubmissionProps) => {
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-end mr-10 mb-40">
+    <div className="fixed inset-0 flex items-start justify-end pt-16 sm:pt-20 mr-3 sm:mr-10">
       <div className="absolute inset-0" onClick={onClose}></div>
-      <div className="bg-white dark:bg-zinc-800 w-full max-w-md rounded-lg p-6 relative z-10 shadow-xl animate-fadeIn">
+      <div className="bg-white dark:bg-zinc-800 w-full max-w-md rounded-lg p-6 relative z-10 shadow-xl animate-fadeIn mt-2">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">Create New Post</h2>
           <Button variant="ghost" size="icon" onClick={onClose} className="text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200">
