@@ -1,5 +1,5 @@
 import Navbar from "@/components/custom/navbar"
-import FlyingTo from "@/components/custom/flyingTo"
+import FlyingToRequestingFrom from "@/components/custom/flyingToRequestingFrom"
 import Postcard from "@/components/custom/postcard"
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { logout } from '@/store/slices/authSlice';
@@ -44,7 +44,7 @@ const Home = () => {
     <div className="flex flex-col items-center mt-20 space-y-4 gap-6">
       <h1>{user?.email}</h1>
       <button onClick={() => dispatch(logout())}>Logout</button>
-      <FlyingTo/>
+      <FlyingToRequestingFrom/>
 
       {posts.map((post, index) => (
         <Postcard key={index} {...post} />
