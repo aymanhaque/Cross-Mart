@@ -13,7 +13,7 @@ const Navbar = () => {
             <div className=' mx-auto px-4 flex justify-between items-center'>
                 {/* Hamburger Menu */}
                 <div className='flex items-center space-x-2 pr-50'>
-                    <FaBars className="text-neutral-800 dark:text-neutral-300 hover:text-indigo-400 transition-all duration-300 cursor-pointer p-2" size={size} />
+                    <FaBars className="text-neutral-800 dark:text-neutral-300 hover:text-indigo-400 dark:hover:text-indigo-400 transition-all duration-300 cursor-pointer p-2" size={size} />
                     <a href="/Home">
                         <img className="w-12 dark:invert" src={outerImg} alt="OuterBuddy" />
                     </a>
@@ -32,20 +32,20 @@ const Navbar = () => {
                 <div className='flex gap-7 items-center space-x-2'>
                     <button
                         onClick={toggleTheme}
-                        className="flex items-center text-neutral-800 dark:text-neutral-300 hover:text-indigo-400 transition-all duration-300 cursor-pointer"
+                        className="flex items-center text-neutral-800 dark:text-neutral-300 hover:text-indigo-400 dark:hover:text-indigo-400 transition-all duration-300 cursor-pointer"
                         aria-label="Toggle theme"
                     >
                         {theme === 'dark' ? <Sun className="p-2" size={size} /> : <Moon className="p-2" size={size} />}
                     </button>
-                    <div className="flex items-center text-neutral-800 dark:text-neutral-300 hover:text-indigo-400 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center text-neutral-800 dark:text-neutral-300 hover:text-indigo-400 dark:hover:text-indigo-400 transition-all duration-300 cursor-pointer">
                         <span>Post</span>
                         <FaPlus className="p-2" size={size} />
                     </div>
-                    <div className="flex items-center text-neutral-800 dark:text-neutral-300 hover:text-indigo-400 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center text-neutral-800 dark:text-neutral-300 hover:text-indigo-400 dark:hover:text-indigo-400 transition-all duration-300 cursor-pointer">
                         <span>Chat</span>
                         <FaComments className="p-2" size={size} />
                     </div>
-                    <div className="flex items-center text-neutral-800 dark:text-neutral-300 hover:text-indigo-400 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center text-neutral-800 dark:text-neutral-300 hover:text-indigo-400 dark:hover:text-indigo-400 transition-all duration-300 cursor-pointer">
                         <span>Location</span>
                         <FaMapMarkerAlt className="p-2" size={size} />
                     </div>

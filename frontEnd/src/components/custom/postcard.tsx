@@ -48,11 +48,11 @@ const Postcard = ({
 
       {/* Action Buttons */}
       <div className="p-4 flex justify-between items-center">
-        <button className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-indigo-400 transition-colors duration-300">
+        <button className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-indigo-400 dark:hover:text-indigo-400 transition-colors duration-300">
           <FaComment size={16} />
           <span className="text-sm">{commentCount} comments</span>
         </button>
-        <button className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-indigo-400 transition-colors duration-300">
+        <button className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-indigo-400 dark:hover:text-indigo-400 transition-colors duration-300">
           <FaShare size={16} />
           <span className="text-sm">Share</span>
         </button>
