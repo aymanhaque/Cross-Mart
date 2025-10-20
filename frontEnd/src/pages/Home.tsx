@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { logout } from '@/store/slices/authSlice';
 const Home = () => {
 
-  const {user, isAuthenticated} = useAppSelector((state) => state.auth);
+  const {user} = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   
   const posts = [

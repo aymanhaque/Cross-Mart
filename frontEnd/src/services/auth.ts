@@ -1,25 +1,31 @@
 import axios from 'axios'
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
 interface SignupData {
-  name: string
   email: string
+  name: Int8Array
   password: string
 }
 
 interface SignupResponse {
   id: string
-  name: string
   email: string
+  name: Int8Array
   password: string
 }
 
 export const signupUser = async (data: SignupData): Promise<SignupResponse> => {
   try {
-    const response = await axios.post('http://localhost:8081/auth/signup', data)
+    const response = await axios.post(`${API_BASE_URL}/auth/signup`, data)
     return response.data
-  } catch (error: any) {
-    const errorMessage = error.response?.data?.message || 'Signup failed'
-    throw new Error(errorMessage)
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      const errorMessage = error.response?.data?.message || 'Signup failed'
+      throw new Error(errorMessage)
+    } else {
+      throw new Error('Unexpected error occurred')
+    }
   }
 }
 
@@ -30,18 +36,21 @@ interface LoginData {
 
 interface LoginResponse {
   id: string
-  name: string
   email: string
+  name: Int8Array
   token: string
 }
 
 export const loginUser = async (data: LoginData): Promise<LoginResponse> => {
   try {
-    const response = await axios.post('http://localhost:8081/auth/login', data)
+    const response = await axios.post(`${API_BASE_URL}/auth/login`, data)
     return response.data
-  } catch (error: any) {
-    const errorMessage = error.response?.data?.message || 'Login failed'
-    throw new Error(errorMessage)
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      const errorMessage = error.response?.data?.message || 'Login failed'
+      throw new Error(errorMessage)
+    } else {
+      throw new Error('Unexpected error occurred')
+    }
   }
 }
-
