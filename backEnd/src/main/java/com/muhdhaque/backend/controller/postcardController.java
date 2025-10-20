@@ -20,10 +20,22 @@ public class postcardController {
         this.postcardMapper = postcardMapper;
     }
 
+    @GetMapping("/getAllPostcards")
+    public List<PostcardDTO> getAllPostcards() {
+        // Logic to get all postcards
+        return postcardService.getAllPostcards();
+    }
+
     @GetMapping("/getPostcards/{userID}")
     public List<PostcardDTO> getPostcardsByUserId(@PathVariable int userID) {
         // Logic to get postcards by user ID
         return postcardService.getPostcardsByUserId(userID);
+    }
+
+    @GetMapping("/getPostcardsByLocation")
+    public List<PostcardDTO> getPostcardsByLocation(@RequestParam String location) {
+        // Logic to get postcards by location
+        return postcardService.getPostcardsByLocation(location);
     }
 
     @PostMapping("/createPostcard")

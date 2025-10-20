@@ -3,24 +3,23 @@ package com.muhdhaque.backend.dto;
 public class PostcardDTO {
     private int id;
     private String userName;
+    private String userInitial;
     private String location;
     private String requestingFromCountry;
     private String text;
     private String imageURL;
     private int commentCount;
-//    private int userId;
 
-
-    public PostcardDTO(int id, String userName, String location, String requestingFromCountry, String text, String imageURL, int commentCount) {
+    public PostcardDTO(int id, String userName, String userInitial, String location, String requestingFromCountry, String text, String imageURL, int commentCount) {
         this.id = id;
         this.userName = userName;
+        this.userInitial = userInitial;
         this.location = location;
         this.requestingFromCountry = requestingFromCountry;
         this.text = text;
         this.imageURL = imageURL;
         this.commentCount = commentCount;
     }
-
 
     public int getId() {
         return id;
@@ -36,6 +35,14 @@ public class PostcardDTO {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getUserInitial() {
+        return userInitial;
+    }
+
+    public void setUserInitial(String userInitial) {
+        this.userInitial = userInitial;
     }
 
     public String getLocation() {
@@ -77,4 +84,8 @@ public class PostcardDTO {
     public void setCommentCount(int commentCount) {
         this.commentCount = commentCount;
     }
+//    private int userId;
+
+
+
 }

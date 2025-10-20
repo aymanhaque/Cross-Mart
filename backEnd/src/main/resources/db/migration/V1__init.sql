@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS postcards (
                                          id SERIAL NOT NULL,
                                          user_name VARCHAR(255) NOT NULL,
+                                         user_initial VARCHAR(255) NOT NULL,
                                          location VARCHAR(255) NOT NULL,
                                          requesting_from_country VARCHAR(255) NOT NULL,
                                          text TEXT NOT NULL,

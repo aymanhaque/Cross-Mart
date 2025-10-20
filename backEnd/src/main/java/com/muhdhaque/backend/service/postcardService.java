@@ -24,19 +24,22 @@ public class postcardService {
     @Autowired
     private PostcardMapper postcardMapper;
 
+    public List<PostcardDTO> getAllPostcards() {
+        List<PostCard> postcards = postCardRepository.findAll();
+        return postcardMapper.toDtoList(postcards);
+    }
+
     @Transactional
     public List<PostcardDTO> getPostcardsByUserId(int userID) {
         return postcardMapper.toDtoList(postCardRepository.findByUserId(userID));
 }
 
+    public List<PostcardDTO> getPostcardsByLocation(String location) {
+        return postcardMapper.toDtoList(postCardRepository.findByLocation(location));
+    }
+
     public PostCard createPostcard(PostcardDTO postcardDTO, int userID) {
-        PostCard postcard = new PostCard();
-        postcard.setUserName(postcardDTO.getUserName());
-        postcard.setLocation(postcardDTO.getLocation());
-        postcard.setRequestingFromCountry(postcardDTO.getRequestingFromCountry());
-        postcard.setText(postcardDTO.getText());
-        postcard.setImageURL(postcardDTO.getImageURL());
-        postcard.setCommentCount(postcardDTO.getCommentCount());
+        PostCard postcard = new PostCard(postcardDTO);
         postcard.setUser(userService.getUserById(userID));
 
         return postCardRepository.save(postcard);
