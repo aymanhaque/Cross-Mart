@@ -1,4 +1,6 @@
-# OuterBuddy
+# OuterBuddy 
+<img width="500" height="500" alt="Outer__1_-removebg-preview" src="https://github.com/user-attachments/assets/82ea33bb-b14b-4ae0-9967-35e511c5b24f" />
+
 
 OuterBuddy is a cross-country marketplace platform designed to help users purchase items from overseas at fair prices, bypassing the exorbitant costs typically associated with importing or using platforms like Amazon.
 
