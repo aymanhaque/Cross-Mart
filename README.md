@@ -36,8 +36,8 @@ OuterBuddy offers a unique solution:
 
 ## Example Use Case
 
-- Alice lives in France and wants a Japanese gadget not sold locally.
-- Bob is traveling from Japan to France soon.
+- Alicia lives in France and wants a Japanese gadget not sold locally.
+- Kuro is traveling from Japan to France soon.
 - Alice posts a request for the gadget on OuterBuddy.
 - Bob sees the request, buys the gadget in Japan, and brings it to France.
 - Upon arrival, Bob meets Alice and sells her the gadget at a fair price, avoiding hefty import fees.
