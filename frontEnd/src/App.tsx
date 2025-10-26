@@ -1,10 +1,18 @@
-import { Button } from "@/components/ui/button"
+import { router } from "./constants/router/router"
+import { RouterProvider } from "react-router-dom"
+import { ThemeProvider } from "./contexts/ThemeContext"
+import { Provider } from 'react-redux'
+import { store } from './store/store'
 
 function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
-    </div>
+    <Provider store={store}>
+      <ThemeProvider>
+        <div className="">
+          <RouterProvider router={router} />
+        </div>
+      </ThemeProvider>
+    </Provider>
   )
 }
 
