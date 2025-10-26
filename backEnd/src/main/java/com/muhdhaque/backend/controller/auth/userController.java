@@ -24,10 +24,11 @@ public class userController {
         String name = signupRequest.getName();
         String email = signupRequest.getEmail();
         String password = signupRequest.getPassword();
+        String location = signupRequest.getLocation();
         if (userService.userExists(email)) {
             throw new RuntimeException("User with email " + email + " already exists");
         }
-        User user = new User(name,email,password);
+        User user = new User(name, email, password, location);
         return userService.saveUser(user);
     }
 

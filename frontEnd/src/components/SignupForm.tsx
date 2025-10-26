@@ -4,8 +4,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import outerImg from "@/assets/outer.png"
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { signupUser } from "@/services/auth"
+import { getCurrentLocation } from "@/services/locationService"
 import { useNavigate } from "react-router-dom"
 
 export function SignupForm({
@@ -15,11 +16,30 @@ export function SignupForm({
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
+    location: ""
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const navigate = useNavigate();
+
+  // Fetch user's location on component mount
+  useEffect(() => {
+    const fetchLocation = async () => {
+      try {
+        const locationData = await getCurrentLocation()
+        // The API returns city and country data
+        const locationString = locationData.city 
+          ? `${locationData.city}, ${locationData.country}` 
+          : locationData.country || ""
+        setFormData(prev => ({ ...prev, location: locationString }))
+      } catch (err) {
+        console.error("Failed to get location:", err)
+        // Don't show error to user, just leave location empty
+      }
+    }
+    fetchLocation()
+  }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target

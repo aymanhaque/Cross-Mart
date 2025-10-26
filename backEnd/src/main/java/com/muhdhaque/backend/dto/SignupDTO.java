@@ -4,6 +4,7 @@ public class SignupDTO {
     private String name;
     private String email;
     private String password;
+    private String location;
 
     // Getters and setters
     public String getName() {
@@ -28,5 +29,13 @@ public class SignupDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

@@ -4,6 +4,7 @@ interface User {
   id: string;
   email: string;
   name?: string;
+  location?: string;
 }
 
 interface AuthState {
@@ -28,6 +29,11 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       localStorage.setItem('token', action.payload.token);
     },
+    updateUserLocation: (state, action: PayloadAction<string>) => {
+      if (state.user) {
+        state.user.location = action.payload;
+      }
+    },
     logout: (state) => {
       state.user = null;
       state.token = null;
@@ -37,5 +43,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setCredentials, logout } = authSlice.actions;
+export const { setCredentials, updateUserLocation, logout } = authSlice.actions;
 export default authSlice.reducer;

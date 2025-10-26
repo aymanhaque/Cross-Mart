@@ -39,7 +39,8 @@ export function LoginForm({
         user: {
           id: response.id,
           email: response.email,
-          name: response.name
+          name: response.name,
+          location: response.location
         },
         token: response.token
       }))

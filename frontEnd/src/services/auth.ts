@@ -4,15 +4,17 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 interface SignupData {
   email: string
-  name: Int8Array
+  name: string
   password: string
+  location: string
 }
 
 interface SignupResponse {
   id: string
   email: string
-  name: Int8Array
+  name: string
   password: string
+  location: string
 }
 
 export const signupUser = async (data: SignupData): Promise<SignupResponse> => {
@@ -37,8 +39,9 @@ interface LoginData {
 interface LoginResponse {
   id: string
   email: string
-  name: Int8Array
+  name: string
   token: string
+  location: string
 }
 
 export const loginUser = async (data: LoginData): Promise<LoginResponse> => {

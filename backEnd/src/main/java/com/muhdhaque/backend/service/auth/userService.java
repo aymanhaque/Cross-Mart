@@ -1,14 +1,14 @@
 package com.muhdhaque.backend.service.auth;
 
 import com.muhdhaque.backend.model.User;
-import com.muhdhaque.backend.repository.UsersRepository;
+import com.muhdhaque.backend.repository.usersRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class userService {
-    private final UsersRepository usersRepository;
+    private final usersRepository usersRepository;
 
-    public userService(UsersRepository usersRepository) {
+    public userService(usersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
 

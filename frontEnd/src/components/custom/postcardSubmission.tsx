@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Field, FieldLabel, FieldGroup, FieldContent, FieldDescription } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -20,7 +20,14 @@ const PostcardSubmission = ({ isOpen, onClose }: PostcardSubmissionProps) => {
   
   // Get user info from Redux store
   const { user } = useAppSelector((state) => state.auth)
-  
+
+  // Set location from user data when component mounts or user changes
+  useEffect(() => {
+    if (user?.location) {
+      setLocation(user.location)
+    }
+  }, [user?.location])
+
   if (!isOpen) return null
 
   // Generate user initials from name (first letter of each name part)

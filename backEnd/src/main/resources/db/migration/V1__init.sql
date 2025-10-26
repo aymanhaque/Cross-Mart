@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS users (
                                      name VARCHAR(255) NOT NULL,
                                      email VARCHAR(255) NOT NULL UNIQUE,
                                      password VARCHAR(60) NOT NULL,
+                                     location VARCHAR(255),
                                      CONSTRAINT pk_user PRIMARY KEY (id)
 );
 
