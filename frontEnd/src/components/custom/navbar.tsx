@@ -1,7 +1,7 @@
 import { FaPlus, FaComments, FaMapMarkerAlt, FaBars } from "react-icons/fa";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
-import outerImg from "@/assets/outer1.png";
+import outerImg from "@/assets/crossmart.png";
 import { useState } from "react";
 import PostcardSubmission from "./postcardSubmission";
 import LocationCard from "./locationCard";

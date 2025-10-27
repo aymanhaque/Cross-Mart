@@ -1,7 +1,6 @@
 package com.muhdhaque.backend.controller;
 
 
-import com.muhdhaque.backend.model.PostCard;
 import com.muhdhaque.backend.service.locationService;
 import org.springframework.web.bind.annotation.*;
 

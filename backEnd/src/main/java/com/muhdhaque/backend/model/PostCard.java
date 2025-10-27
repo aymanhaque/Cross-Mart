@@ -2,7 +2,6 @@ package com.muhdhaque.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.muhdhaque.backend.dto.PostcardDTO;
-import com.muhdhaque.backend.service.auth.userService;
 import jakarta.persistence.*;
 
 @Entity

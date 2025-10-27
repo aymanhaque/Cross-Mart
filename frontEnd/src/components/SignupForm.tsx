@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import outerImg from "@/assets/outer.png"
+import outerImg from "@/assets/crossmart.png"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { signupUser } from "@/services/auth"
@@ -75,7 +75,7 @@ export function SignupForm({
               </div>
               <span className="sr-only">Acme Inc.</span>
             </a>
-            <h1 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">Welcome to OuterBuddy</h1>
+            <h1 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">Welcome to CrossMart</h1>
             <div className="text-center text-sm text-neutral-800 dark:text-neutral-300">
               Already have an account?{" "}
               <Link to="/login" className="underline underline-offset-4 text-indigo-600 dark:text-indigo-400">
