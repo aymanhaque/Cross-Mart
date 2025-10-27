@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Field, FieldLabel, FieldGroup, FieldContent, FieldDescription } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -13,7 +13,7 @@ interface PostcardSubmissionProps {
 
 const PostcardSubmission = ({ isOpen, onClose }: PostcardSubmissionProps) => {
   const [text, setText] = useState('')
-  const [location, setLocation] = useState('')
+  const [requestinglocation, setRequestingLocation] = useState('')
   const [imageURL, setImageURL] = useState('') // Changed from imageUrl to imageURL
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
@@ -21,12 +21,7 @@ const PostcardSubmission = ({ isOpen, onClose }: PostcardSubmissionProps) => {
   // Get user info from Redux store
   const { user } = useAppSelector((state) => state.auth)
 
-  // Set location from user data when component mounts or user changes
-  useEffect(() => {
-    if (user?.location) {
-      setLocation(user.location)
-    }
-  }, [user?.location])
+
 
   if (!isOpen) return null
 
@@ -48,8 +43,8 @@ const PostcardSubmission = ({ isOpen, onClose }: PostcardSubmissionProps) => {
       return
     }
 
-    if (!text || !location) {
-      setError('Please fill out all required fields')
+    if (!text || !requestinglocation) {
+      setError(`Please fill out all required fields`)
       return
     }
 
@@ -63,8 +58,8 @@ const PostcardSubmission = ({ isOpen, onClose }: PostcardSubmissionProps) => {
       const postcard = {
         userName: user.name || user.email,
         userInitial: generateUserInitials(user.name),
-        location,
-        requestingFromCountry: location,
+        location: user.location || "String",
+        requestingFromCountry: requestinglocation,
         text,
         imageURL: imageURL || defaultImageURL, // Use default if imageURL is empty
         commentCount: 0,
@@ -75,7 +70,7 @@ const PostcardSubmission = ({ isOpen, onClose }: PostcardSubmissionProps) => {
       
       // Clear form and close modal on success
       setText('')
-      setLocation('')
+      setRequestingLocation('')
       setImageURL('')
       onClose()
       
@@ -125,8 +120,8 @@ const PostcardSubmission = ({ isOpen, onClose }: PostcardSubmissionProps) => {
               <FieldContent>
                 <Input 
                   id="location"
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
+                  value={requestinglocation}
+                  onChange={(e) => setRequestingLocation(e.target.value)}
                   placeholder="e.g., Tokyo, Japan"
                   required
                 />
