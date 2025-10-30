@@ -14,7 +14,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  user: null,
+  user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!) : null,
   token: localStorage.getItem('token'),
   isAuthenticated: !!localStorage.getItem('token'),
 };
@@ -28,10 +28,12 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isAuthenticated = true;
       localStorage.setItem('token', action.payload.token);
+      localStorage.setItem('user', JSON.stringify(action.payload.user));
     },
     updateUserLocation: (state, action: PayloadAction<string>) => {
       if (state.user) {
         state.user.location = action.payload;
+        localStorage.setItem('user', JSON.stringify(state.user));
       }
     },
     logout: (state) => {
@@ -39,6 +41,7 @@ const authSlice = createSlice({
       state.token = null;
       state.isAuthenticated = false;
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
     },
   },
 });

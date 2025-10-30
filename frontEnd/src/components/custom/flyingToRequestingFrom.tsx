@@ -59,18 +59,18 @@ const FlyingToRequestingFrom = () => {
 
   return (
     <div 
-      className={`relative ${isExpanded ? 'w-96 md:w-112' : 'w-auto'} h-12 bg-white dark:bg-zinc-800 rounded-3xl border border-gray-300 dark:border-gray-600 overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'shadow-md' : ''}`}
+      className={`relative h-12 bg-white dark:bg-zinc-800 rounded-3xl border border-gray-300 dark:border-gray-600 overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'shadow-md' : ''}`}
       onClick={handleContainerClick}
     >
       <div className="h-full flex items-center">
         {/* Flying To Button/Input */}
         <div 
-          className={`h-full flex items-center px-6 gap-3 cursor-pointer ${!isExpanded || flyingToExpanded ? 'flex-1 px-12' : ''} ${requestingFromExpanded ? 'opacity-0 w-0 px-0' : ''} transition-all duration-300`}
+          className={`h-full flex items-center px-6 gap-3 cursor-pointer ${!isExpanded || flyingToExpanded ? 'flex-1 px-12' : ''}  transition-all duration-300`}
           onClick={handleFlyingToClick}
         >
           <FaPlane className="text-neutral-800 dark:text-white flex-shrink-0" size={16} />
           {!flyingToExpanded ? (
-            <span className="text-neutral-800 dark:text-neutral-300 whitespace-nowrap font-medium">Flying to?</span>
+            <span className={`text-neutral-800 dark:text-neutral-300 whitespace-nowrap font-medium ${requestingFromExpanded ? 'opacity-0 w-0 px-0' : ''}`}>Flying to?</span>
           ) : (
             <input
               ref={flyingToInputRef}
@@ -80,7 +80,7 @@ const FlyingToRequestingFrom = () => {
               onKeyDown={handleFlyingToKeyDown}
               onClick={(e) => e.stopPropagation()}
               placeholder="Enter destination..."
-              className="w-full bg-transparent text-neutral-800 dark:text-neutral-300 placeholder-gray-400 dark:placeholder-gray-500 outline-none"
+              className="bg-transparent text-neutral-800 dark:text-neutral-300 placeholder-gray-400 dark:placeholder-gray-500 outline-none"
             />
           )}
         </div>
@@ -92,7 +92,7 @@ const FlyingToRequestingFrom = () => {
 
         {/* Requesting From Button/Input */}
         <div 
-          className={`h-full flex items-center px-6 gap-3 cursor-pointer ${!isExpanded || requestingFromExpanded ? 'flex-1' : ''} ${flyingToExpanded ? 'opacity-0 w-0 px-0' : ''} transition-all duration-300`}
+          className={`h-full flex items-center px-6 gap-3 cursor-pointer ${!isExpanded || requestingFromExpanded ? 'flex-1' : ''} ${flyingToExpanded ? 'w-0 px-0' : ''} transition-all duration-300`}
           onClick={handleRequestingFromClick}
         >
           <FaMapMarkerAlt className="text-neutral-800 dark:text-white flex-shrink-0" size={16} />

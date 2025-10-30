@@ -26,7 +26,12 @@ const Home = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      if (!user?.id) return;
+      // Don't try to fetch if there's no user
+      if (!user?.id) {
+        setIsLoading(false);
+        setPosts([]);
+        return;
+      }
       
       try {
         setIsLoading(true);
@@ -42,7 +47,7 @@ const Home = () => {
     };
 
     fetchPosts();
-  }, []); // Re-fetch if user id changes
+  }, [user?.id]); // Re-fetch when user id becomes available
 
   return (
     <>
