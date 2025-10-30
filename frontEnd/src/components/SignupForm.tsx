@@ -8,6 +8,8 @@ import { useState, useEffect } from "react"
 import { signupUser } from "@/services/auth"
 import { getCurrentLocation } from "@/services/locationService"
 import { useNavigate } from "react-router-dom"
+import { useAppDispatch } from "@/store/hooks"
+import { setCredentials } from "@/store/slices/authSlice"
 
 export function SignupForm({
   className,
@@ -22,6 +24,7 @@ export function SignupForm({
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const navigate = useNavigate();
+  const dispatch = useAppDispatch()
 
   // Fetch user's location on component mount
   useEffect(() => {
@@ -30,7 +33,7 @@ export function SignupForm({
         const locationData = await getCurrentLocation()
         // The API returns city and country data
         const locationString = locationData.city 
-          ? `${locationData.city}, ${locationData.country}` 
+          ? `${locationData.city}, ${locationData.region}, ${locationData.country}`
           : locationData.country || ""
         setFormData(prev => ({ ...prev, location: locationString }))
       } catch (err) {
@@ -52,7 +55,16 @@ export function SignupForm({
     setError("")
 
     try {
-      await signupUser(formData)
+      const response = await signupUser(formData)
+        dispatch(setCredentials({
+            user: {
+                id: response.id,
+                email: response.email,
+                name: response.name,
+                location: response.location
+            },
+            token: response.token
+        }))
       navigate("/Home")
     } catch (err) {
       setError(err instanceof Error ? err.message : "Signup failed")

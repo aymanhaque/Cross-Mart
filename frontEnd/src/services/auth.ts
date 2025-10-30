@@ -13,6 +13,7 @@ interface SignupResponse {
   id: string
   email: string
   name: string
+  token: string
   password: string
   location: string
 }

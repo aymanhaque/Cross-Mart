@@ -5,17 +5,15 @@ import com.muhdhaque.backend.dto.LoginDTO;
 import com.muhdhaque.backend.dto.SignupDTO;
 import com.muhdhaque.backend.model.User;
 import com.muhdhaque.backend.service.auth.userService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin(origins = "*", maxAge = 3600)
+@RequiredArgsConstructor
 public class userController {
     private final userService userService;
-
-    public userController(userService userService) {
-        this.userService = userService;
-    }
 
 
     @PostMapping("/signup")
