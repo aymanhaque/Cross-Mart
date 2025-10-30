@@ -12,7 +12,5 @@ public interface postCardRepository extends JpaRepository<PostCard,Integer> {
     List<PostCard> findByUserId(Integer userId);
     List<PostCard> findByLocation(String location);
 
-    Page<PostCard> getFirstByCommentCount(int commentCount, Pageable pageable);
 
-    List<PostCard> getFirstByCommentCount(int commentCount);
 }
