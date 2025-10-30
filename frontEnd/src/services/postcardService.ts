@@ -14,7 +14,7 @@ interface PostcardData {
 }
 
 interface PostCardResponse {
-    id: Int8Array
+    id: number
     userName: string
     userInitial: string
     location: string
@@ -34,6 +34,21 @@ export const createPostcard = async(data: PostcardData): Promise<PostCardRespons
     catch (error: unknown){
         if(axios.isAxiosError(error)){
             const errorMessage = error.response?.data?.message || "Couldn't create Postcard"
+            throw new Error(errorMessage)
+        } else {
+            throw new Error('Unexpected error occured')
+        }
+    }
+}
+
+export const getAllPostcardsExceptMine = async(id: number): Promise<PostCardResponse[]> =>{
+    try{
+        const response = await axios.get(`${API_BASE_URL}/postcard/getAllPostcardsExcept/${id}`)
+        return response.data
+    }
+    catch (error: unknown){
+        if(axios.isAxiosError(error)){
+            const errorMessage = error.response?.data?.message || "Couldn't get Postcards"
             throw new Error(errorMessage)
         } else {
             throw new Error('Unexpected error occured')

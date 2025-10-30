@@ -3,40 +3,46 @@ import FlyingToRequestingFrom from "@/components/custom/flyingToRequestingFrom"
 import Postcard from "@/components/custom/postcard"
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { logout } from '@/store/slices/authSlice';
-const Home = () => {
+import { useState, useEffect } from 'react';
+import { getAllPostcardsExceptMine } from "@/services/postcardService";
 
+interface Post {
+  id: number
+  userName: string
+  userInitial: string
+  location: string
+  requestingFromCountry: string
+  text: string
+  imageURL: string
+  commentCount: number
+}
+
+const Home = () => {
   const {user} = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
-  
-  const posts = [
-    {
-      userName: "sdfsfd",
-      userInitial: "A",
-      location: "Dallas",
-      requestingFromCountry: "USA",
-      text: "Looking for some cool tech gadgets!",
-      imageUrl: "image-url.jpg",
-      commentCount: 5
-    },
-    {
-      userName: "Sarah",
-      userInitial: "S",
-      location: "New York",
-      requestingFromCountry: "Canada",
-      text: "Anyone bringing maple syrup to NYC?",
-      imageUrl: "maple-syrup.jpg",
-      commentCount: 2
-    },
-    {
-      userName: "Leo",
-      userInitial: "L",
-      location: "San Francisco",
-      requestingFromCountry: "Japan",
-      text: "Looking for exclusive anime merchandise!",
-      imageUrl: "anime-merch.jpg",
-      commentCount: 7
-    }
-  ]
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      if (!user?.id) return;
+      
+      try {
+        setIsLoading(true);
+        setError(null);
+        const data = await getAllPostcardsExceptMine(parseInt(user.id));
+        setPosts(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load posts');
+        console.error('Error fetching posts:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []); // Re-fetch if user id changes
 
   return (
     <>
@@ -46,8 +52,20 @@ const Home = () => {
       <button onClick={() => dispatch(logout())}>Logout</button>
       <FlyingToRequestingFrom/>
 
-      {posts.map((post, index) => (
-        <Postcard key={index} {...post} />
+      {isLoading && (
+        <div className="text-neutral-600 dark:text-neutral-400">Loading posts...</div>
+      )}
+
+      {error && (
+        <div className="text-red-500 dark:text-red-400">Error: {error}</div>
+      )}
+
+      {!isLoading && !error && posts.length === 0 && (
+        <div className="text-neutral-600 dark:text-neutral-400">No posts available</div>
+      )}
+
+      {posts.map((post) => (
+        <Postcard key={post.id} {...post} />
       ))}
     </div>
     </>
